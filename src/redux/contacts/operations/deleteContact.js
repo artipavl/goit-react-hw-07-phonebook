@@ -3,7 +3,7 @@ import { deleteContacts } from 'API/API';
 
 
 export const deleteContact = createAsyncThunk(
-  'tasks/deleteContact',
+  'contacts/deleteContact',
   async (id, thunkAPI) => {
     try {
       const response = await deleteContacts(id);

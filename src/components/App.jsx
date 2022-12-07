@@ -4,7 +4,7 @@ import { ContactList } from 'components/Contacts/ContactList';
 import { Filter } from 'components/Filter/Filter';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { fetchAll } from 'redux/contacts/fetchAll';
+import { fetchAll } from 'redux/contacts/operations/fetchAll';
 
 export function App() {
   const error = useSelector(state => state.contacts.error);
@@ -15,9 +15,9 @@ export function App() {
   }, [dispatch]);
 
   useEffect(() => {
-    error && alert(error)
+    error && alert(error);
   }, [error]);
-  
+
   return (
     <div>
       <Section title="Phonebook">

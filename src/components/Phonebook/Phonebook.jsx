@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import css from 'components/Phonebook/Phonebook.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contacts/addContact';
+import { addContact } from 'redux/contacts/operations/addContact';
 
 export function Phonebook() {
   const contacts = useSelector(state => state.contacts.value);

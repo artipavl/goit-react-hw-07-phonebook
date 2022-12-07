@@ -3,7 +3,7 @@ import { postContacts } from 'API/API';
 
 
 export const addContact = createAsyncThunk(
-  'tasks/addContact',
+  'contacts/addContact',
   async (article, thunkAPI) => {
     try {
       const response = await postContacts(article);
