@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 // import PropTypes from 'prop-types';
 import css from 'components/Phonebook/Phonebook.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contactsSlice';
+import { addContact } from 'redux/contacts/addContact';
 
 export function Phonebook() {
   const contacts = useSelector(state => state.contacts.value);
   const dispatch = useDispatch();
-  
+
   const [name, setName] = useState(() =>
     JSON.parse(window.localStorage.getItem('name'))
       ? JSON.parse(window.localStorage.getItem('name'))
@@ -36,7 +36,7 @@ export function Phonebook() {
       }
     }
 
-    dispatch(addContact({ name, number }));
+    dispatch(addContact({ name, phone: number }));
     setName('');
     setNumber('');
   };
