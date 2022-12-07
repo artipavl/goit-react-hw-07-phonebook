@@ -6,13 +6,21 @@ import { deleteContact } from 'redux/contacts/deleteContact';
 
 export const ContactItem = ({ contact }) => {
   const { name, phone, id } = contact;
+
   const dispatch = useDispatch();
+
+  const onButtonClick = async (e, id) => {
+    e.target.disabled = true;
+    await dispatch(deleteContact(id));
+    e.target.disabled = false;
+  };
+
   return (
     <li className={css.item}>
       {name}: {phone}
       <button
         type="button"
-        onClick={() => dispatch(deleteContact(id))}
+        onClick={e => onButtonClick(e, id)}
         className={css.button}
       >
         Delete

@@ -27,16 +27,19 @@ export function Phonebook() {
     window.localStorage.setItem('number', JSON.stringify(number));
   }, [number]);
 
-  const submitForm = e => {
+  const submitForm = async e => {
     e.preventDefault();
+
     for (const contact of contacts) {
       if (contact.name.toLowerCase() === name.toLowerCase()) {
         alert(`${name} is already in contacts.`);
         return;
       }
     }
-
-    dispatch(addContact({ name, phone: number }));
+    const submitButton = e.currentTarget.elements.submitButton;
+    submitButton.disabled = true;
+    await dispatch(addContact({ name, phone: number }));
+    submitButton.disabled = false;
     setName('');
     setNumber('');
   };
@@ -84,8 +87,7 @@ export function Phonebook() {
           required
         />
       </label>
-
-      <button type="submit" className={css.phonebookButton}>
+      <button type="submit" name="submitButton" className={css.phonebookButton}>
         add contacts
       </button>
     </form>
