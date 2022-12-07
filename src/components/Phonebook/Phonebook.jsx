@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-// import PropTypes from 'prop-types';
 import css from 'components/Phonebook/Phonebook.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contacts/addContact';
@@ -29,17 +28,19 @@ export function Phonebook() {
 
   const submitForm = async e => {
     e.preventDefault();
-
+    const submitButton = e.currentTarget.elements.submitButton;
+    submitButton.disabled = true;
     for (const contact of contacts) {
       if (contact.name.toLowerCase() === name.toLowerCase()) {
         alert(`${name} is already in contacts.`);
+        submitButton.disabled = false;
         return;
       }
     }
-    const submitButton = e.currentTarget.elements.submitButton;
-    submitButton.disabled = true;
+
     await dispatch(addContact({ name, phone: number }));
     submitButton.disabled = false;
+
     setName('');
     setNumber('');
   };
@@ -93,14 +94,3 @@ export function Phonebook() {
     </form>
   );
 }
-
-// Phonebook.propTypes = {
-//   addContact: PropTypes.func.isRequired,
-//   contacts: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       name: PropTypes.string.isRequired,
-//       number: PropTypes.string.isRequired,
-//       id: PropTypes.string.isRequired,
-//     })
-//   ).isRequired,
-// };
