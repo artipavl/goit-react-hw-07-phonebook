@@ -10,9 +10,10 @@ export const ContactItem = ({ contact }) => {
   const dispatch = useDispatch();
 
   const onButtonClick = async (e, id) => {
-    e.target.disabled = true;
+    const button = e.target;
+    button.disabled = true;
     await dispatch(deleteContact(id));
-    e.target.disabled = false;
+    button.disabled = false;
   };
 
   return (
