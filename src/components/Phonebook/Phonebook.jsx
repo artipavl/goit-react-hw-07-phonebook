@@ -37,9 +37,13 @@ export function Phonebook() {
         return;
       }
     }
-
-    await dispatch(addContact({ name, phone: number }));
-    submitButton.disabled = false;
+    try { 
+      await dispatch(addContact({ name, phone: number }));
+      submitButton.disabled = false;
+    } catch (error) {
+      console.log(error);
+      submitButton.disabled = false;
+    }
 
     setName('');
     setNumber('');

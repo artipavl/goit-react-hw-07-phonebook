@@ -12,8 +12,14 @@ export const ContactItem = ({ contact }) => {
   const onButtonClick = async (e, id) => {
     const button = e.target;
     button.disabled = true;
-    await dispatch(deleteContact(id));
-    button.disabled = false;
+    try {
+      await dispatch(deleteContact(id));
+      button.disabled = false;
+    } catch (error) {
+      console.log(error)
+      button.disabled = false;
+    }
+    
   };
 
   return (
